@@ -18,3 +18,28 @@ def save_dataset(symbol):
     print (data.head ())
     print (f'./DataOutput/{symbol}_daily.csv')
 
+def csv_to_dataset_openclose(csv_path):
+    data = pd.read_csv(csv_path)
+    dateList = []
+    yList = []
+    row_count = len(data['1. open'])
+
+    for i in range (row_count):
+      dateList.append (str(data.date[i]) + ' 09:30:00')
+      dateList.append (str(data.date[i]) + ' 16:00:00')
+      yList.append (data['1. open'][i])
+      yList.append (data['4. close'][i])
+
+      data_openclose = pd.DataFrame ({'ds':dateList,'y':yList})
+    
+    data_volume = data.drop (["1. open",  "2. high",   "3. low",  "4. close"], axis=1)
+    data_volume.rename (columns = {"date": "ds", "5. volume": "y"}, inplace = True)
+
+    data_high = data.drop (["1. open",  "5. volume",   "3. low",  "4. close"], axis=1)
+    data_high.rename (columns = {"date": "ds", "2. high": "y"}, inplace = True)    
+    
+    data_low = data.drop (["1. open",  "5. volume",   "2. high",  "4. close"], axis=1)
+    data_low.rename (columns = {"date": "ds", "3. low": "y"}, inplace = True)    
+    
+    return data,data_openclose, data_volume, data_high, data_low
+
