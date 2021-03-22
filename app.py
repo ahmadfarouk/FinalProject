@@ -57,3 +57,42 @@ print (data_volume.head ())
 print (data_high.head ())
 print (data_low.head ())
 
+model_openclose = Prophet(daily_seasonality=True)
+model_volume = Prophet(daily_seasonality=True)
+model_high = Prophet(daily_seasonality=True)
+model_low = Prophet(daily_seasonality=True)
+
+model_openclose.fit(data_openclose)
+model_volume.fit(data_volume)
+model_high.fit(data_high)
+model_low.fit(data_low)
+
+future_openclose_df = model_openclose.make_future_dataframe(periods=90)
+future_volume_df = model_volume.make_future_dataframe(periods=90)
+future_high_df = model_high.make_future_dataframe(periods=90)
+future_low_df = model_low.make_future_dataframe(periods=90)
+
+predictions_openclose = model_openclose.predict(future_openclose_df)
+predictions_volume = model_volume.predict(future_volume_df)
+predictions_high = model_high.predict(future_high_df)
+predictions_low = model_low.predict(future_low_df)
+
+ax =model_openclose.plot(predictions_openclose)
+plt.ylabel("Open-Close Price ", rotation='vertical', weight='bold')
+plt.xlabel("Year",weight='bold')
+plt.savefig("./DataOutput/AC_Open_Close.png")
+
+model_volume.plot(predictions_volume)
+plt.ylabel("Volume ", rotation='vertical', weight='bold')
+plt.xlabel("Year",weight='bold')
+plt.savefig("./DataOutput/AC_Volume.png")
+
+model_high.plot(predictions_high)
+plt.ylabel("High Price ", rotation='vertical', weight='bold')
+plt.xlabel("Year",weight='bold')
+plt.savefig("./DataOutput/AC_HighPrice.png")
+
+model_low.plot(predictions_low)
+plt.ylabel("Low Price ", rotation='vertical', weight='bold')
+plt.xlabel("Year",weight='bold')
+plt.savefig("./DataOutput/AC_LowPrice.png")
