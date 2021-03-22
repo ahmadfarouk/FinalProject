@@ -16,11 +16,7 @@
     <div class="row">
         <div class="col-md-1">
 
-            <nav class="navbar navbar-light">
-                <a class="navbar-brand" href="/" style="color: white">
-                    <span class="mb-0 h6"></span>&nbsp;Netflix&nbsp;</a></span>
-                </a>
-            </nav>
+           
     </div>
     <div class="col-md-9">
     </div>
@@ -51,6 +47,9 @@
     </div>
   </div>
 
+
+
+
     <div class="container">
       <div class="row">
         <div class="col-md-7">
@@ -59,26 +58,43 @@
         </div>
         <div class="col-md-5">
           <h2>&nbsp;Visualization&nbsp;
+
+            
         </div>
          
       </div>
 
    
         <div class="row">
-          <!--div class="col-md-2">
-            <li>
-              <img src="..\static\images\fig1.PNG" width="180" height="200">
-            </li>      
-          </div-->
+          
 
 
           <div class="col-md-4">
             <p>The Purpose of thgis project is to understand analyzing stocks using Python Code. We took historical stocks prices. 
               This will be done by extracting latest stocks data and using Time series forecast. Facebook open source is used for this forecast.</p>
             <p>Factors we looked at include: Date, Open, Close, High and Low prices . This site provides the visualizations created as part of the analysis which are deployed via Flask and Python.</p>
+
+            <div class="col-md-8">
+              <li>
+               <div class="panel-heading">Filter Search</div>  
+            <div class="panel-body">
+              <form id="form">
+               
+                <div class="form-group">
+                  <ul class="list-group" id="filters">
+                    <li class="filter list-group-item">
+                      <label for="city">Enter a Stock Code</label>
+                        <input class="form-control" id="city" type="text" placeholder="AC">
+                    </li>
+                  </ul>
+                </div>
+                <button id="filter-btn" type="button" class="btn btn-default">Filter</button>
+              </form>
+              </li>      
+            </div>        
           </div>
 
-         
+          
           <div class="col-md-4">
         
             <li>
@@ -108,6 +124,8 @@
             
           </div>
  
+          
+
 
     </div>
     </div>
