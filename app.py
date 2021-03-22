@@ -5,17 +5,18 @@ import pandas as pd
 import numpy as np
 from alpha_vantage.timeseries import TimeSeries
 
+symbol = 'AMZN'
+
 def save_dataset(symbol):
     api_key = 'P33J9T7IVI663Y0A'
 
     ts = TimeSeries(key=api_key, output_format='pandas')
     data, meta_data = ts.get_daily(symbol, outputsize='full')
+    filename = f'./DataOutput/{symbol}_daily.csv'
+    data.to_csv(filename)
+    return data, filename
 
-    data.to_csv(f'./DataOutput/{symbol}_daily.csv')
-    print (data.head ())
-    print (f'./DataOutput/{symbol}_daily.csv')
-
-def csv_to_dataset_openclose(csv_path):
+def csv_to_dataset_fbprophet(csv_path):
     data = pd.read_csv(csv_path)
     dateList = []
     yList = []
@@ -45,14 +46,9 @@ def csv_to_dataset_volume(csv_path):
 
     return data
 
-save_dataset('AC')
+save_dataset(symbol)
 
-data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_openclose('./DataOutput/AC_daily.csv')
-
-print (data_openclose.head ())
-print (data_volume.head ())
-print (data_high.head ())
-print (data_low.head ())
+data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_fbprophet(f'./DataOutput/{symbol}_daily.csv')
 
 model_openclose = Prophet(daily_seasonality=True)
 model_volume = Prophet(daily_seasonality=True)
@@ -77,19 +73,19 @@ predictions_low = model_low.predict(future_low_df)
 ax =model_openclose.plot(predictions_openclose)
 plt.ylabel("Open-Close Price ", rotation='vertical', weight='bold')
 plt.xlabel("Year",weight='bold')
-plt.savefig("./DataOutput/AC_Open_Close.png")
+plt.savefig(f"./DataOutput/{symbol}_Open_Close.png")
 
 model_volume.plot(predictions_volume)
 plt.ylabel("Volume ", rotation='vertical', weight='bold')
 plt.xlabel("Year",weight='bold')
-plt.savefig("./DataOutput/AC_Volume.png")
+plt.savefig(f"./DataOutput/{symbol}_Volume.png")
 
 model_high.plot(predictions_high)
 plt.ylabel("High Price ", rotation='vertical', weight='bold')
 plt.xlabel("Year",weight='bold')
-plt.savefig("./DataOutput/AC_HighPrice.png")
+plt.savefig(f"./DataOutput/{symbol}_HighPrice.png")
 
 model_low.plot(predictions_low)
 plt.ylabel("Low Price ", rotation='vertical', weight='bold')
 plt.xlabel("Year",weight='bold')
-plt.savefig("./DataOutput/AC_LowPrice.png")
+plt.savefig(f"./DataOutput/{symbol}_LowPrice.png")
