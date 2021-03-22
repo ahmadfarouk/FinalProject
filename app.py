@@ -1,7 +1,4 @@
 from flask import Flask, jsonify, render_template
-import pandas as pd
-import datetime as dt
-
 from fbprophet import Prophet
 import matplotlib.pyplot as plt
 import pandas as pd
