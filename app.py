@@ -67,7 +67,6 @@ model_volume.fit(data_volume)
 model_high.fit(data_high)
 model_low.fit(data_low)
 
-
 future_openclose_df = model_openclose.make_future_dataframe(periods=90)
 future_volume_df = model_volume.make_future_dataframe(periods=90)
 future_high_df = model_high.make_future_dataframe(periods=90)
