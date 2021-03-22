@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<head>
+  <meta charset="UTF-8">
+  <title>Netflix Movies 2019</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/CSS/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+</head>
+<body>  
+
+  <div class="div-1">
+   
+    <div class="row">
+        <div class="col-md-1">
+
+            <nav class="navbar navbar-light">
+                <a class="navbar-brand" href="/" style="color: white">
+                    <span class="mb-0 h6"></span>&nbsp;Netflix&nbsp;</a></span>
+                </a>
+            </nav>
+    </div>
+    <div class="col-md-9">
+    </div>
+
+    <div class="col-md-2">
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Plots
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/index1">Annual Production </a>
+                        <a class="dropdown-item" href="/index2">Revenue and Budget</a>
+                        <a class="dropdown-item" href="/index3"> Title Statistics</a>
+                        <a class="dropdown-item" href="/index4"> Director Statistics</a>
+                        <a class="dropdown-item" href="/index5"> Director Revenue </a>
+                        <a class="dropdown-item" href="/index6"> Player Statistics </a>
+                    </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/list_all_data">Data<span class="sr-only"></span></a>
+                    </li>
+                  </ul>
+                </div>
+                </nav>        
+    </div>
+  </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+      
+          <h2>&nbsp;Summary: Netflix Data Analysis&nbsp;
+        </div>
+        <div class="col-md-5">
+          <h2>&nbsp;Visualization&nbsp;
+        </div>
+         
+      </div>
+
+   
+        <div class="row">
+          <!--div class="col-md-2">
+            <li>
+              <img src="..\static\images\fig1.PNG" width="180" height="200">
+            </li>      
+          </div-->
+
+
+          <div class="col-md-6">
+            <p>The purpose of this project is to analyze Netflix data.The foundation of this project is
+               Project-2 which was normalizing the Netflix data and import them in PostgreSQL.The purpose of
+                this project is to provide users an interactive means to explore Netflix data. 
+                To accomplish this analysis, 
+               we first pulled data from Azure PostgreSQL to assemble a dataset on over 3000 records.
+              After assembling the dataset, we used Flask to publish data in to index.html .</p>
+            <p>Factors we looked at include: Country, Rating, Revenue, and Budget. This site provides the  visualizations created as part of the analysis which are deployed via js, d3 and plotly.</p>
+          </div>
+
+         
+          <div class="col-md-2">
+        
+            <li>
+              <a href="index4">
+              <img src="{{ url_for('static', filename='images/Fig4.png') }}" width="150" height="150" alt="Director Statistics" title= "Director Statistics">
+              </a> 
+            </li> 
+            <li>
+              <a href="index1">
+              <img src="{{ url_for('static', filename='images/Fig1.png') }}" width="150" height="150" alt="Annual Production" title= "Annual Production">
+            </a> 
+            </li>
+          </div>
+            <div class="col-md-2">
+
+              <li>
+                <a href="index2">
+                <img src="{{ url_for('static', filename='images/Fig2.png') }}" width="150" height="150" alt="Country Statistics" title="Country Statistics">
+                </a>
+              </li> 
+              <li>
+                <a href="/index3">
+                <img src="{{ url_for('static', filename='images/Fig3.png') }}" width="150" height="150" alt="Title Statistics" title="Title Statistics">
+                 </a>
+              </li> 
+            </div>
+            <div class="col-md-2">
+
+              <li>
+                <a href="/index5">
+                <img src="{{ url_for('static', filename='images/Fig5.png') }}" width="150" height="150" alt="Director Revenue" title= "Director Revenue" >
+                 </a>
+              </li> 
+              <li>
+                <a href="/index6">
+                <img src="{{ url_for('static', filename='images/Fig6.png') }}" width="150" height="150" alt ="Player Statistics" title = "Player Statistics">
+                 </a>
+              </li> 
+            </div>
+          </div>
+ 
+
+    </div>
+    </div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</div>
+</body>
+
+</html>
