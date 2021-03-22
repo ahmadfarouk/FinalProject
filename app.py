@@ -43,3 +43,17 @@ def csv_to_dataset_openclose(csv_path):
     
     return data,data_openclose, data_volume, data_high, data_low
 
+def csv_to_dataset_volume(csv_path):
+    data = pd.read_csv(csv_path)
+
+    return data
+
+save_dataset('AC')
+
+data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_openclose('./DataOutput/AC_daily.csv')
+
+print (data_openclose.head ())
+print (data_volume.head ())
+print (data_high.head ())
+print (data_low.head ())
+
