@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<head>
+  <meta charset="UTF-8">
+  <title>Stock market prediction</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/CSS/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+</head>
+<body>  
+
+  <div class="div-1">
+   
+    <div class="row">
+        <div class="col-md-1">
+
+           
+    </div>
+    <div class="col-md-9">
+    </div>
+
+    <div class="col-md-2">
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Plots
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="static/images/Open_Close.png">Open Close</a>
+                        <a class="dropdown-item" href="static/images/Volume.png">Volume</a>
+                        <a class="dropdown-item" href="static/images/HighPrice.png">High Price</a>
+                        <a class="dropdown-item" href="static/images/LowPrice.png">Low Price</a>
+                    </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="Downloaded Data">Data<span class="sr-only"></span></a>
+                    </li>
+                  </ul>
+                </div>
+                </nav>        
+    </div>
+  </div>
+
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+      
+          <h2>&nbsp;Summary: Stock Forecast&nbsp;
+        </div>
+        <div class="col-md-5">
+          <h2>&nbsp;Visualization&nbsp;
+
+            
+        </div>
+         
+      </div>
+
+   
+        <div class="row">
+          
+
+
+          <div class="col-md-4">
+            <p>The Purpose of this project is to analyze and predict stocks closing prices using different pediction algorithms and compare between them. We took historical stocks prices until a week ago from AlphaVantage. 
+              Then extracting latest stocks data and using Time series forecast. Facebook Prophet open source is used for this forecast.</p>
+            <p>Factors we looked at include: Date, Open, Close, High and Low prices. This site provides the visualizations created as part of the analysis which are deployed via Flask and Python.</p>
+
+            <div class="col-md-8">
+              <li>
+               <div class="panel-heading">Filter Search</div>  
+            <div class="panel-body">
+              <form id="form" action="{{ url_for('PredictStock') }}" method="post">
+                <div class="form-group">
+                  <ul class="list-group" id="filters">
+                    <li class="filter list-group-item">
+                      <label for="city">Enter a Stock Code</label>
+                        <input class="form-control" id="city" type="text" name="symbol" placeholder="AC">
+                    </li>
+                  </ul>
+                </div>
+                <input type="submit" id="filter-btn" class="btn btn-default" name="Predict" value="Predict">
+              </form>
+              </li>      
+            </div>        
+          </div>
+
+          
+          <div class="col-md-4">
+        
+            <li>
+              <a class="dropdown-item" href="static/images/Open_Close.png">
+              <img src="static/images/Open_Close.png" alt="Open Close" width="350" height="350" alt="Director Statistics" title= "Open Close">
+              </a>
+            </li> 
+            <li>
+              <a class="dropdown-item" href="static/images/Volume.png">    
+              <img src="static/images/Volume.png" alt="Volume" width="350" height="350" alt="Annual Production" title= "Volume">
+              </a>
+            </li>
+          </div>
+            <div class="col-md-4">
+
+              <li>
+                <a class="dropdown-item" href="static/images/HighPrice.png">
+                <img src="static/images/HighPrice.png" alt="High Price" width="350" height="350" alt="Country Statistics" title="High Price">
+                </a>
+              </li> 
+              <li>
+                <a class="dropdown-item" href="static/images/LowPrice.png">
+                <img src="static/images/LowPrice.png" alt="Low Price" width="350" height="350" alt="Title Statistics" title="Low Price">
+                </a>
+              </li> 
+            </div>
+            
+          </div>
+ 
+          
+
+
+    </div>
+    </div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+h6{
+    font-family: sans-serif;
+    color: red;
+  }
+
+.OptionClass
+{
+  width: 10;
+}
+
+#selDataset {
+  max-width: 100%;
+}
+
+.d3-tip {
+    padding: 6px;
+    font-size: 12px;
+    line-height: 1;
+    line-height: 1.5em;
+    color: #fff;
+    text-align: center;
+    text-transform: capitalize;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+  }
+.navbar-brand
+{
+  font-size: 30px;
+  background-color: rgba(238, 38, 12, 0.774);
+  font-family: serif;
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-radius: 3px;
+}
+h1,h2
+{
+ color: rgb(178, 73, 32); 
+}
+
+td
+{
+  text-align: left;
+  left: 0%;
+}
+
+tr
+{
+  text-align: left;
+}
+
+th
+{
+  text-align: left;
+}
+
+.borderless {
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
+}
+h3
+{
+  color: lightseagreen; 
+  font-size: 20px;
+  text-align: center
+  
+}
+img
+{
+align-content: center ;
+
+}
+
+.div-1 {
+  background:  url("Netflix.PNG")  no-repeat center;
+  background-size: cover;
+  height: 1200px;
+  position: relative;
+}
+
+.chart::before {
+  position: absolute;
+  top: 50px;
+  left: 300px;
+  z-index: -1;
+  display: block;
+  width: 400px;
+  height: 300px;
+  content: " ";
+  background-image: url("static/style/maxresdefault.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.tooltip {
+  position: absolute;
+  width: 135px;
+  height: 60px;
+  padding: 2px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: white;
+  text-align: center;
+  background: #551aaf;
+  border: 0;
+  border-radius: 10px;
+}
+
+.axis-text {
+  font-family: sans-serif;
+  font-weight: bold;
+  fill: #551aaf;
+  text-anchor: middle;
+}
+
+.active {
+  font-weight: bold;
+  fill: #000;
+  fill: #551aaf;
+  transition: fill 0.3s ease-out;
+  text-anchor: middle;
+}
+
+.inactive {
+  font-weight: lighter;
+  fill: #551aaf;
+  transition: fill 0.3s ease-out;
+  text-anchor: middle;
+}
+
+.inactive:hover {
+  fill: #e75480;
+  cursor: pointer;
+}
