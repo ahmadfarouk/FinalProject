@@ -48,3 +48,23 @@ for (var i = 0; i < 12; i++) {
   trow.append("td").text(volume[i]);
 }
 }
+
+function buildPlot() {
+    var url = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2017-01-01&end_date=2018-11-22&api_key=${apiKey}`;
+  
+    d3.json(url).then(function(data) {
+  
+      // @TODO: Grab Name, Stock, Start Date, and End Date from the response json object to build the plots
+      var name = data.dataset.name;
+      var stock = data.dataset.dataset_code;
+      var startDate = data.dataset.start_date;
+      var endDate = data.dataset.end_date;
+      // @TODO: Unpack the dates, open, high, low, and close prices
+      
+      var dates = unpack(data.dataset.data, 0)
+      var open = unpack(data.dataset.data, 1)
+      var high = unpack(data.dataset.data,2)
+      var low =unpack(data.dataset.data,3)
+      var close = unpack(data.dataset.data, 4)
+  
+  
