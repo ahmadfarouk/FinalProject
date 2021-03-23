@@ -83,24 +83,30 @@ def PredictStock():
     plt.ylabel("Open-Close Price ", rotation='vertical', weight='bold')
     plt.xlabel("Year",weight='bold')
     plt.savefig(f"static/images/Open_Close.png")
-
+    plt.clf()
+    plt.close()
+    
     model_volume.plot(predictions_volume)
     plt.ylabel("Volume ", rotation='vertical', weight='bold')
     plt.xlabel("Year",weight='bold')
     plt.savefig(f"static/images/Volume.png")
+    plt.clf()
+    plt.close()
 
     model_high.plot(predictions_high)
     plt.ylabel("High Price ", rotation='vertical', weight='bold')
     plt.xlabel("Year",weight='bold')
     plt.savefig(f"static/images/HighPrice.png")
+    plt.clf()
+    plt.close()
 
     model_low.plot(predictions_low)
     plt.ylabel("Low Price ", rotation='vertical', weight='bold')
     plt.xlabel("Year",weight='bold')
     plt.savefig(f"static/images/LowPrice.png")
-
-    plt.close
-
+    plt.clf()
+    plt.close()
+    
     export_csv_to_html(f'./templates/DataOutput/{symbol}_daily.csv')
 
     return redirect("/")
