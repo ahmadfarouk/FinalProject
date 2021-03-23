@@ -17,6 +17,18 @@ function unpack(rows, index) {
     return row[index];
   });
 }
+// Submit Button handler
+function handleSubmit() {
+  // Prevent the page from refreshing
+  d3.event.preventDefault();
+
+  // Select the input value from the form
+  var stock = d3.select("#stockInput").node().value;
+  console.log(stock);
+   // clear the input value
+   d3.select("#stockInput").node().value = "";
+
+
 var ticker= "AMZN"
 
 
