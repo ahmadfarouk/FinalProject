@@ -131,9 +131,7 @@ align-content: center ;
   cursor: pointer;
 }
 
-img {
-  width: 100px;
-}
+
 
 .btn {
   font-size: 25px;
@@ -167,5 +165,5 @@ img {
 }
 
 thead {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.315);
 }
