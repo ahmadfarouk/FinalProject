@@ -48,6 +48,11 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route('/api/Stock_info')
+def stock_info():
+    return render_template("stock_info.html")
+
+
 @app.route('/api/PredictStock', methods=['POST'])
 def PredictStock():
     symbol = request.form['symbol']
@@ -99,6 +104,10 @@ def PredictStock():
     export_csv_to_html(f'./templates/DataOutput/{symbol}_daily.csv')
 
     return redirect("/")
+
+
+
+
 
 if __name__ == "__main__":
     app.run(host='localhost', debug=True)

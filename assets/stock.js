@@ -22,7 +22,7 @@ var ticker= "AMZN"
 
 function getMonthlyData() {
   
-    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/${ticker}.json?start_date=2016-10-01&end_date=2021-10-01&collapse=monthly&api_key=${apiKey}`;
+    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/${ticker}.json?start_date=2016-10-01&end_date=2020-10-01&collapse=monthly&api_key=${apiKey}`;
     d3.json(queryUrl).then(function(data) {
       // @TODO: Unpack the dates, open, high, low, close, and volume
       var dates = unpack(data.dataset.data, 0)
