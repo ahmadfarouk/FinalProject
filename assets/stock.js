@@ -20,7 +20,7 @@ function unpack(rows, index) {
 symbol = "Amzn"
 function getMonthlyData() {
 
-    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/{symbol}.json?start_date=2016-10-01&end_date=2017-10-01&collapse=monthly&api_key=${apiKey}`;
+    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2016-10-01&end_date=2017-10-01&collapse=monthly&api_key=${apiKey}`;
     d3.json(queryUrl).then(function(data) {
       // @TODO: Unpack the dates, open, high, low, close, and volume
       var dates = unpack(data.dataset.data, 0)

@@ -1,123 +1,194 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@loictiems 
-loictiems
-/
-stockDashboard
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-stockDashboard/index.html
-
-Loic Tiemani Pushing Codes
-Latest commit 1f8854e on Jan 16
- History
- 0 contributors
-91 lines (82 sloc)  2.43 KB
-  
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Financial Report</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    /> -->
+    <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    />
+    <!-- Material Kit CSS -->
+    <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/CSS/style.css"> </link>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Financial Plot</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <style>
-    body {
-      background-color: unset;
-    }
-/* table {
-    border-collapse: collapse;
-    width: 100%;
-} */
+  <body>
+    <div class="wrapper">
+      <div class="sidebar" data-color="azure" data-background-color="white">
+        <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+      Tip 2: you can also add an image using data-image tag
+  -->
+        <div class="logo">
+          <a href="#" class="simple-text logo-mini">
+            <img src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/004/392/original/Marketing_Monochromatic.png?1610822969" alt="woman holding megaphone with bar graphs in the background">
+          </a>
+          <a href="#" class="simple-text logo-normal">
+            Stocks Report
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#0">
+                <i class="material-icons">dashboard</i>
+                <p>MENU</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Resources</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">More</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav
+          class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+        >
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="javascript:;">STOCK PRICES</a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              aria-controls="navigation-index"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="javascript:;">
+                    <i class="material-icons">notifications</i> Notifications
+                  </a>
+                </li>
+                <!-- your navbar here -->
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
+          <div class="container-fluid">
+          <div class="jumbotron">
+        <h1>
+          Amazon Financial Report
+          <span id="report-date" style="float: right">2019</span>
+        </h1>
+        <p></p>
+      </div>
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-tbody>tr:nth-child(even){background-color: #f2f2f2 !important}
-tbody>tr:nth-child(odd){background-color: #fff !important}
-/* th {
-  background-color: #2f3439;
-  color: white;
-} */
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <div class="jumbotron">
-      <h1>
-        Amazon Financial Report
-        <span id="report-date" style="float: right;">2019</span>
-      </h1>
-      <p></p>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="panel panel-primary">
-          <div class="panel-body">
-            Company Profile
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+            <a class="btn btn-primary" href="https://money.cnn.com/quote/profile/profile.html?symb=AMZN" target='_blank'role="button">Company Profile</a>
+          </div>
+          <div class="company">
+            <h3>Top Executives</h3>
+            <table cellspacing="0" class="table table-striped">
+              <tbody>
+                <tr class="wsod_companyOfficer">
+                  <td class="wsod_officerName">Jeffrey P. Bezos</td>
+                  <td class="wsod_officerTitle">Chairman, President &amp; Chief Executive Officer</td>
+                </tr>
+                <tr class="wsod_companyOfficer">
+                  <td class="wsod_officerName">Dave Clark</td>
+                  <td class="wsod_officerTitle">Senior Vice President-Worldwide Operations</td>
+                </tr>
+                <tr class="wsod_companyOfficer">
+                  <td class="wsod_officerName">Brian T. Olsavsky</td>
+                  <td class="wsod_officerTitle">Chief Financial Officer &amp; Senior Vice President</td>
+                </tr>
+                <tr class="wsod_companyOfficer">
+                  <td class="wsod_officerName">Amit Agarwal</td>
+                  <td class="wsod_officerTitle">Senior VP &amp; Country Manager-Amazon India</td>
+                </tr>
+                <tr class="wsod_companyOfficer">
+                  <td class="wsod_officerName">David A. Zapolsky</td>
+                  <td class="wsod_officerTitle">Secretary, Senior Vice President &amp; General Counsel</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="company">
-          
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            Stock Performance
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2 id="chart-title">Stock Performance</h2>
+                <select id="selDataset">
+                  <option value="dataset1">DataSet1</option>
+                  <option value="dataset2">DataSet2</option>
+                  <option value="dataset3">DataSet3</option>
+                </select>
+                <br />
+                <br />
+              </div>
           </div>
+          <div id="plot"></div>
         </div>
-        <div id="plot"></div>
+      </div>
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-md-12">
+          <table id="summary-table" class="table table-responsive table-info table-striped table-inverse">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Open</th>
+                <th>High</th>
+                <th>Low</th>
+                <th>Close</th>
+                <th>Volume</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <table id="summary-table" class="table table-striped table-inverse">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Open</th>
-              <th>High</th>
-              <th>Low</th>
-              <th>Close</th>
-              <th>Volume</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-
-  <script src="plots.js"></script>
-</body>
- <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <script src="../assets/stock.js"></script>        
+  </body>
 </html>
-
