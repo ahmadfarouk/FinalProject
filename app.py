@@ -1,11 +1,10 @@
 from flask import Flask, jsonify, render_template, request, redirect
+import os
 from fbprophet import Prophet
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from alpha_vantage.timeseries import TimeSeries
-
-symbol = 'AMZN'
 
 def save_dataset(symbol):
     api_key = 'P33J9T7IVI663Y0A'
@@ -41,7 +40,20 @@ def csv_to_dataset_fbprophet(csv_path):
     
     return data,data_openclose, data_volume, data_high, data_low
 
-def fbprophet_predict (data,data_openclose, data_volume, data_high, data_low):
+def export_csv_to_html(csv_file):
+    return csv_file
+
+app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route('/api/PredictStock', methods=['POST'])
+def PredictStock():
+    symbol = request.form['symbol']
+    save_dataset(symbol)
+    data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_fbprophet(f'./templates/DataOutput/{symbol}_daily.csv')
+    
     model_openclose = Prophet(daily_seasonality=True)
     model_volume = Prophet(daily_seasonality=True)
     model_high = Prophet(daily_seasonality=True)
@@ -82,22 +94,11 @@ def fbprophet_predict (data,data_openclose, data_volume, data_high, data_low):
     plt.xlabel("Year",weight='bold')
     plt.savefig(f"static/images/LowPrice.png")
 
-def export_csv_to_html(csv_file):
-    return csv_file
+    plt.close
 
-app = Flask(__name__)
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-@app.route('/api/PredictStock', methods=['POST'])
-def PredictStock():
-    symbol = request.form['symbol']
-    save_dataset(symbol)
-    data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_fbprophet(f'./templates/DataOutput/{symbol}_daily.csv')
-    fbprophet_predict(data,data_openclose, data_volume, data_high, data_low)
     export_csv_to_html(f'./templates/DataOutput/{symbol}_daily.csv')
+
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='localhost', debug=True)

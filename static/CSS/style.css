@@ -75,13 +75,6 @@ align-content: center ;
 
 }
 
-.div-1 {
-  background:  url("Netflix.PNG")  no-repeat center;
-  background-size: cover;
-  height: 1200px;
-  position: relative;
-}
-
 .chart::before {
   position: absolute;
   top: 50px;
@@ -91,7 +84,6 @@ align-content: center ;
   width: 400px;
   height: 300px;
   content: " ";
-  background-image: url("static/style/maxresdefault.jpg");
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;
