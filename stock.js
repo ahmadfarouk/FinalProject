@@ -17,10 +17,10 @@ function unpack(rows, index) {
     return row[index];
   });
 }
-
+symbol = "Amzn"
 function getMonthlyData() {
 
-    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2016-10-01&end_date=2017-10-01&collapse=monthly&api_key=${apiKey}`;
+    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/{symbol}.json?start_date=2016-10-01&end_date=2017-10-01&collapse=monthly&api_key=${apiKey}`;
     d3.json(queryUrl).then(function(data) {
       // @TODO: Unpack the dates, open, high, low, close, and volume
       var dates = unpack(data.dataset.data, 0)
@@ -67,4 +67,54 @@ function buildPlot() {
       var low =unpack(data.dataset.data,3)
       var close = unpack(data.dataset.data, 4)
   
+      getMonthlyData();
+      var comp_div =d3.select(".company");
+      comp_div.text(" ")
+      comp_div.append("p").text(data.dataset.description);
   
+      // Closing Scatter Line Trace
+      var trace1 = {
+        type: "scatter",
+        mode: "lines",
+        name: name,
+        x: dates,
+        y: close,
+        line: {
+          color: "#17BECF"}
+        // @TODO: YOUR CODE HERE
+      };
+  
+      // Candlestick Trace
+      var trace2 = {
+        // @TODO: YOUR CODE HERE
+        type: "candlestick",
+        name:"Candlestick Data",
+        x: data.dataset.data.map(row =>row[0]),
+        high:data.dataset.data.map(row =>row[2]),
+        low:data.dataset.data.map(row =>row[3]),
+        open:data.dataset.data.map(row =>row[1]),
+        close:data.dataset.data.map(row =>row[4]),
+        
+      };
+  
+      var data = [trace1, trace2];
+  
+      var layout = {
+        title: `${stock} closing prices`,
+        xaxis: {
+          range: [startDate, endDate],
+          type: "date"
+        },
+        yaxis: {
+          autorange: true,
+          type: "linear"
+        },
+        showlegend: false
+      };
+  
+      Plotly.newPlot("plot", data, layout);
+  
+    });
+  }
+  
+  buildPlot();  
