@@ -58,7 +58,7 @@ def stock_info():
 def PredictStock():
     symbol = request.form['symbol']
     save_dataset(symbol)
-    data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_fbprophet(f'./templates/DataOutput/{symbol}_daily.csv')
+    data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_fbprophet(f'./templates/DataOutput/daily.csv')
     
     model_openclose = Prophet(daily_seasonality=True)
     model_volume = Prophet(daily_seasonality=True)
