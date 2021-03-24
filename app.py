@@ -11,7 +11,7 @@ def save_dataset(symbol):
 
     ts = TimeSeries(key=api_key, output_format='pandas')
     data, meta_data = ts.get_daily(symbol, outputsize='full')
-    filename = f'./templates/DataOutput/{symbol}_daily.csv'
+    filename = './templates/DataOutput/daily.csv'
     data.to_csv(filename)
     return data, filename
 
@@ -41,7 +41,8 @@ def csv_to_dataset_fbprophet(csv_path):
     return data,data_openclose, data_volume, data_high, data_low
 
 def export_csv_to_html(csv_file):
-    return csv_file
+    data = pd.read_csv(csv_file)
+    data.to_html('./templates/DataOutput/AlphaVantage_daily_data.html')
 
 app = Flask(__name__)
 @app.route("/")
@@ -107,13 +108,14 @@ def PredictStock():
     plt.clf()
     plt.close()
     
-    export_csv_to_html(f'./templates/DataOutput/{symbol}_daily.csv')
+    export_csv_to_html('./templates/DataOutput/daily.csv')
 
     return redirect("/")
 
-
-
-
+####display All data
+@app.route("/AV_data")
+def AV_data():
+    return render_template("DataOutput/AlphaVantage_daily_data.html")
 
 if __name__ == "__main__":
     app.run(host='localhost', debug=True)
