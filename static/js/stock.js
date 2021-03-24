@@ -1,17 +1,5 @@
 var apiKey = "eys9Qowq7xsT5zdCr6-m";
 
-/**
- * Helper function to select stock data
- * Returns an array of values
- * @param {array} rows
- * @param {integer} index
- * index 0 - Date
- * index 1 - Open
- * index 2 - High
- * index 3 - Low
- * index 4 - Close
- * index 5 - Volume
- */
 function unpack(rows, index) {
   return rows.map(function(row) {
     return row[index];
@@ -21,33 +9,15 @@ function unpack(rows, index) {
 function handleSubmit() {
   // Prevent the page from refreshing
   d3.event.preventDefault();
-
   // Select the input value from the form
   var stock = d3.select("#stockInput").node().value;
-  console.log(stock);
+  // console.log(stock);
    // clear the input value
    d3.select("#stockInput").node().value = "";
-
-
-var ticker= "AMZN"
-
-
-function getMonthlyData() {
-  
-    var queryUrl = `https://www.quandl.com/api/v3/datasets/WIKI/${ticker}.json?start_date=2016-10-01&end_date=2020-10-01&collapse=monthly&api_key=${apiKey}`;
-    d3.json(queryUrl).then(function(data) {
-      // @TODO: Unpack the dates, open, high, low, close, and volume
-      var dates = unpack(data.dataset.data, 0)
-      var openPrices = unpack(data.dataset.data, 1)
-      var highPrices = unpack(data.dataset.data,2)
-      var lowPrices =unpack(data.dataset.data,3)
-      var closingPrices= unpack(data.dataset.data, 4)
-      var volume = unpack(data.dataset.data,5)
-        
-    buildTable(dates, openPrices, highPrices, lowPrices, closingPrices, volume);
-});
+   buildPlot(stock);  
 }
 
+// var ticker= "AMZN"
 function buildTable(dates, openPrices, highPrices, lowPrices, closingPrices, volume) {
 var table = d3.select("#summary-table");
 var tbody = table.select("tbody");
@@ -63,9 +33,9 @@ for (var i = 0; i < 12; i++) {
 }
 }
 
-function buildPlot() {
-  
-    var url = `https://www.quandl.com/api/v3/datasets/WIKI/${ticker}.json?start_date=2017-01-01&end_date=2018-11-22&api_key=${apiKey}`;
+function buildPlot(stock) {
+    // var url=  ` https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
+    var url = `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json?start_date=2017-01-01&end_date=2018-11-22&api_key=${apiKey}`;
   
     d3.json(url).then(function(data) {
   
@@ -81,12 +51,13 @@ function buildPlot() {
       var high = unpack(data.dataset.data,2)
       var low =unpack(data.dataset.data,3)
       var close = unpack(data.dataset.data, 4)
+      var volume = unpack(data.dataset.data,5)
   
-      getMonthlyData();
+
       var comp_div =d3.select(".company");
       comp_div.text(" ")
-      comp_div.append("p").text(data.dataset.description);
-  
+      comp_div.append("p").html(data.dataset.description);
+      
       // Closing Scatter Line Trace
       var trace1 = {
         type: "scatter",
@@ -96,12 +67,12 @@ function buildPlot() {
         y: close,
         line: {
           color: "#17BECF"}
-        // @TODO: YOUR CODE HERE
+        
       };
   
       // Candlestick Trace
       var trace2 = {
-        // @TODO: YOUR CODE HERE
+       
         type: "candlestick",
         name:"Candlestick Data",
         x: data.dataset.data.map(row =>row[0]),
@@ -128,8 +99,11 @@ function buildPlot() {
       };
   
       Plotly.newPlot("plot", data, layout);
+      buildTable(dates, open, high, low, close, volume);
   
     });
   }
   
-  buildPlot();  
+// Add event listener for submit button
+d3.select("#submit").on("click", handleSubmit);
+ 

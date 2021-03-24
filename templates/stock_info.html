@@ -33,13 +33,19 @@ tbody>tr:nth-child(odd){background-color: #fff !important}
 </head>
 
 <body>
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text" class="form-control" id="stockInput" placeholder="Enter a stock">
+    </div>
+    <button id="submit" type="submit" class="btn btn-default">Plot Stock</button>
+  </form>
   <div class="container">
     <div class="jumbotron">
       <h1>
         Financial Report
         <span id="report-date" style="float: right;">2021</span>
       </h1>
-      <p></p>
+      <p> </p>
     </div>
 
     <div class="row">
@@ -81,8 +87,7 @@ tbody>tr:nth-child(odd){background-color: #fff !important}
       </div>
     </div>
   </div>
-
-
+  <div id="plot"></div>
   <script src="../static/js/stock.js"></script>
 </body>
  <!-- Bootstrap CSS -->
