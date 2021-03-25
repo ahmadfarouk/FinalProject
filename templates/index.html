@@ -34,6 +34,7 @@
                         <a class="dropdown-item" href="static/images/Volume.png"target="_blank" >Volume</a>
                         <a class="dropdown-item" href="static/images/HighPrice.png"target="_blank" >High Price</a>
                         <a class="dropdown-item" href="static/images/LowPrice.png" target="_blank">Low Price</a>
+                        <a class="dropdown-item" href="static/images/LR_ClosePrice.png" target="_blank">Linear Regression</a>
                     </div>
                     </li>
                     
@@ -80,16 +81,16 @@
               <li>
                <div class="panel-heading">Filter Search</div>  
             <div class="panel-body">
-              <form id="form" action="{{ url_for('PredictStock') }}" method="post">
+              <form id="form" action="{{ url_for('submit_form') }}" method="post">
                 <div class="form-group">
                   <ul class="list-group" id="filters">
                     <li class="filter list-group-item">
                       <label for="city">Enter a Stock Code</label>
-                        <input class="form-control" id="stockInput" type="text" name="symbol" placeholder="AC">
+                        <input class="form-control" id="stockInput" type="text" name="symbol">
                     </li>
                   </ul>
                 </div>
-                <input type="submit" id="filter-btn" class="btn btn-default" name="Predict" value="Predict">
+                <input type="submit" id="filter-btn" class="btn btn-default" name="predict" value="Load and Predict">
               </form>
               </li>      
             </div>        
@@ -113,7 +114,7 @@
 
               <li>
                 <a class="dropdown-item" href="static/images/HighPrice.png" target="_blank">
-                <img src="static/images/HighPrice.png" alt="High Price" width="350" height="350" alt="Country Statistics" title="High Price">
+                <img src="static/images/HighPrice.png" alt="High Price" width="350" height="350" title="High Price">
                 </a>
               </li> 
               <li>
@@ -123,6 +124,15 @@
               </li> 
             </div>
             
+            <div class="col-md-4">
+
+              <li>
+                <a class="dropdown-item" href="static/images/LR_ClosePrice.png" target="_blank">
+                <img src="static/images/LR_ClosePrice.png" alt="Linear Regression Prediction" width="750" height="550" title="High Price">
+                </a>
+              </li> 
+            </div>
+
           </div>
  
           

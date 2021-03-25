@@ -5,15 +5,20 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from alpha_vantage.timeseries import TimeSeries
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from datetime import datetime
+import datetime as dt
+
+symbol = 'AC'
 
 def save_dataset(symbol):
     api_key = 'P33J9T7IVI663Y0A'
-
+    print (symbol)
     ts = TimeSeries(key=api_key, output_format='pandas')
     data, meta_data = ts.get_daily(symbol, outputsize='full')
     filename = './templates/DataOutput/daily.csv'
     data.to_csv(filename)
-    return data, filename
 
 def csv_to_dataset_fbprophet(csv_path):
     data = pd.read_csv(csv_path)
@@ -45,6 +50,7 @@ def export_csv_to_html(csv_file):
     data.to_html('./templates/DataOutput/AlphaVantage_daily_data.html')
 
 app = Flask(__name__)
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -53,11 +59,16 @@ def index():
 def stock_info():
     return render_template("stock_info.html")
 
+@app.route('/api/submit_form', methods=['POST'])
+def submit_form():
+        symbol = request.form['symbol']
+        save_dataset(symbol)
+        PredictStockFB()
+        PredictStockLR()
 
-@app.route('/api/PredictStock', methods=['POST'])
-def PredictStock():
-    symbol = request.form['symbol']
-    save_dataset(symbol)
+        return redirect("/")
+
+def PredictStockFB():
     data,data_openclose, data_volume, data_high, data_low = csv_to_dataset_fbprophet(f'./templates/DataOutput/daily.csv')
     
     model_openclose = Prophet(daily_seasonality=True)
@@ -110,7 +121,56 @@ def PredictStock():
     
     export_csv_to_html('./templates/DataOutput/daily.csv')
 
-    return redirect("/")
+def PredictStockLR():
+    stock = pd.read_csv('./templates/DataOutput/daily.csv')
+    stock.rename(columns={'date': 'Date',
+                        '1. open': 'Open',
+                       '2. high': 'High',
+                        '3. low': 'Low',
+                        '4. close': 'Close',
+                        '5. volume': 'Volume'}, inplace=True)
+    print ('started LR')
+    stock['Date']= pd.to_datetime(stock['Date'])
+    start_date = min (stock['Date'])
+    stock['NumberOfDays'] = (stock['Date'] - start_date).dt.days
+    
+    X = stock['NumberOfDays'].values.reshape (-1,1)
+    y = stock['Close'].values.reshape (-1,1)
+    
+    print("Shape: ", X.shape, y.shape)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+
+    lr=LinearRegression()
+    lr.fit(X_train, y_train)
+    close_predictions=lr.predict(X_test)
+    Date_Test = []
+    for i in range (len (X_test)):
+        Date_Test.append(start_date + dt.timedelta(days=int(X_test[i][0])))
+    print(lr.score(X_train, y_train))
+    print(lr.score(X_test, y_test))
+
+    last_date = max (stock['Date'])
+    max_NumberOfDays = max (stock['NumberOfDays'])
+
+    New_Xs = []
+    for i in range (1, 90):
+        New_Xs.append (max_NumberOfDays + i)
+    NewXs = pd.DataFrame (New_Xs)
+    X_future = NewXs.values.reshape (-1,1)
+    future_predictions=lr.predict(X_future)
+    for i in range (len (future_predictions)):
+        Date_Test.append(start_date + dt.timedelta(days=int(X_future[i][0])))
+    All_predictions = np.append (close_predictions, future_predictions)
+    plt.scatter(Date_Test, All_predictions)
+    plt.xlabel("Date",fontsize=20)
+    plt.ylabel("Predicted Closing", fontsize=20)
+    plt.yticks(fontsize=12)
+    plt.xticks(fontsize=12)
+    plt.rcParams["figure.figsize"] = (70,40)
+    plt.savefig("static/images/LR_ClosePrice.png")
+    plt.clf()
+    plt.close()
+    print ('done LR')
 
 ####display All data
 @app.route("/AV_data")
