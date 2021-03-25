@@ -1,4 +1,5 @@
-var apiKey = "eys9Qowq7xsT5zdCr6-m";
+ var apiKey = "eys9Qowq7xsT5zdCr6-m";
+// var apiKey = "NURNYIOFQ5TL61XG"
 
 function unpack(rows, index) {
   
@@ -35,7 +36,7 @@ for (var i = 0; i < 12; i++) {
 }
 
 function buildPlot(stock) {
-    // var url=  ` https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
+    // var url=  ` https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stock}&apikey=${apiKey}`;
     var url = `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json?start_date=2017-01-01&end_date=2018-11-22&api_key=${apiKey}`;
   
     d3.json(url).then(function(data) {
