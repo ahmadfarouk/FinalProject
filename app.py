@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from datetime import datetime
 import datetime as dt
 
-symbol = 'AC'
+symbol = 'AMZN'
 
 def save_dataset(symbol):
     api_key = 'P33J9T7IVI663Y0A'
